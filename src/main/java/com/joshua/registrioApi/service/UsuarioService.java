@@ -22,6 +22,9 @@ public class UsuarioService {
         if(usuariorepo.existsByCodigoUsuario(request.getCodigoUsuario())){
             throw new RuntimeException("El codigo ya existe");
         }
+        if(usuariorepo.existsByNombre(request.getNombre())){
+            throw new RuntimeException("El nombre de usuario ya está en uso");
+        }
         Usuario usuario = new Usuario();
         usuario.setCodigoUsuario(request.getCodigoUsuario());
         usuario.setNombre(request.getNombre());

@@ -13,6 +13,9 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
+    @Column(name = "codigo_usuario", nullable = false, unique = true, length = 100)
+    private String codigoUsuario;
+
     @Column(name = "nombre", nullable = false, unique = true, length = 100)
     private String nombre;
 
@@ -34,8 +37,9 @@ public class Usuario {
     //Constructores
     public Usuario() {}
 
-    public Usuario(Long idUsuario, String nombre, String password, LocalDate fechaRegistrado, List<Registro> registros) {
+    public Usuario(Long idUsuario,String codigoUsuario, String nombre, String password, LocalDate fechaRegistrado, List<Registro> registros) {
         this.idUsuario = idUsuario;
+        this.codigoUsuario = codigoUsuario;
         this.nombre = nombre;
         this.password = password;
         this.fechaRegistrado = fechaRegistrado;
@@ -49,6 +53,12 @@ public class Usuario {
 
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+    public String getCodigoUsuario() {
+        return codigoUsuario;
+    }
+    public void setCodigoUsuario(String codigoUsuario) {
+        this.codigoUsuario = codigoUsuario;
     }
 
     public String getNombre() {
@@ -88,6 +98,7 @@ public class Usuario {
     public String toString() {
         return "Usuario{" +
                 "idUsuario=" + idUsuario +
+                "codigoUsuarii=" + codigoUsuario +
                 ", nombre='" + nombre + '\'' +
                 ", fechaRegistrado=" + fechaRegistrado +
                 '}';

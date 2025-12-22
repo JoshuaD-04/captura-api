@@ -3,16 +3,18 @@ package com.joshua.registrioApi.service;
 import com.joshua.registrioApi.Model.Usuario;
 import com.joshua.registrioApi.dto.UsuarioRequest;
 import com.joshua.registrioApi.repository.UsuarioRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class UsuarioService {
-    private UsuarioRepository usuariorepo;
-
-    public UsuarioService(UsuarioRepository usuariorepo) {
+    private final UsuarioRepository usuariorepo;
+    private final PasswordEncoder passwordEncoder;
+    public UsuarioService(UsuarioRepository usuariorepo, PasswordEncoder passwordEncoder) {
         this.usuariorepo = usuariorepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Usuario save(UsuarioRequest request){
@@ -23,7 +25,10 @@ public class UsuarioService {
         Usuario usuario = new Usuario();
         usuario.setCodigoUsuario(request.getCodigoUsuario());
         usuario.setNombre(request.getNombre());
-        usuario.setPassword(request.getPassword());
+
+        usuario.setPassword(
+                passwordEncoder.encode(request.getPassword())
+        );
 
         return usuariorepo.save(usuario);
 

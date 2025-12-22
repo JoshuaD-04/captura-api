@@ -1,7 +1,7 @@
 package com.joshua.registrioApi.dto;
 import jakarta.validation.constraints.NotBlank;
 
-public class UsuarioCreateDto {
+public class UsuarioRequest {
     @NotBlank(message = "El codigo es requerido")
     private String codigoUsuario;
     @NotBlank(message = "El nombre es requerido")

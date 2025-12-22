@@ -7,20 +7,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("api/usuarios")
 public class usurioController {
-    private final UsuarioService usurioService;
+    private final UsuarioService usuarioService;
 
     public usurioController(UsuarioService usurioService) {
-        this.usurioService = usurioService;
+        this.usuarioService = usurioService;
     }
-    @PostMapping
+
+    @PostMapping("/crear")
     public ResponseEntity<Usuario> crear(@RequestBody Usuario usuario){
-        return ResponseEntity.ok(usurioService.save(usuario));
+        return ResponseEntity.ok(usuarioService.save(usuario));
     }
     @GetMapping("/{nombre}")
     public ResponseEntity<Usuario> buscar(@PathVariable String nombre){
-        return usurioService.findByName(nombre)
+        return usuarioService.findByName(nombre)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }

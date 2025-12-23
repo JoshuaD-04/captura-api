@@ -1,6 +1,7 @@
 package com.joshua.registrioApi.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Usuario {
     private LocalDate fechaRegistrado;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Registro>  registros = new ArrayList();
 
     @PrePersist

@@ -22,7 +22,7 @@ public class RegistroRequest {
         return codigoProducto;
     }
 
-    public int getNumeroLoto() {
+    public int getNumeroLote() {
         return numeroLote;
     }
 
